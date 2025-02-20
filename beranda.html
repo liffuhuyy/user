@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda Siswa</title>
+    <link rel="stylesheet" href="beranda.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="menu">
+            <ul>
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Profil Saya</a></li>
+                <li class="dropdown">Menu Utama
+                    <ul class="submenu">
+                        <li><a href="#">Presensi</a></li>
+                        <li><a href="#">Management Tugas</a></li>
+                        <li><a href="#">Pengajuan Magang</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">Lainnya
+                    <ul class="submenu">
+                        <li><a href="#">Kontak</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="profile-icon">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </header>
+    <main>
+        <section class="welcome">
+            <h1>Selamat Datang, Siswa!</h1>
+            <p>Silakan lengkapi biodata dan ajukan magang untuk melanjutkan proses pembelajaran.</p>
+            <button class="btn">Mengisi Biodata</button>
+            <button class="btn">Mengajukan Magang</button>
+        </section>
+        <section class="task-info">
+            <div class="card">
+                <i class="fas fa-book"></i>
+                <p>Tugas: <span class="count">5</span></p>
+            </div>
+            <div class="card">
+                <i class="fas fa-book-open"></i>
+                <p>Nilai: <span class="count">85</span></p>
+            </div>
+            <button class="btn">Lihat Selengkapnya</button>
+        </section>
+    </main>
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

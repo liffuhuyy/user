@@ -1,80 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            display: flex;
-            justify-content: flex-end;
-            background: #333;
-            padding: 15px;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-        }
-        .navbar a:hover {
-            background: #555;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
-</html>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="wrapper style2 special fade">
-        <div class="container">
-            <header>
-                <h2>Hubungi Kami</h2>
-                <p>Silakan isi formulir di bawah untuk menghubungi kami</p>
-            </header>
-            <form method="post" action="#" class="cta">
-                <div class="row gtr-uniform gtr-50">
-                    <div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Nama Anda" required /></div>
-                    <div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Alamat Email" required /></div>
-                    <div class="col-12"><textarea name="message" id="message" placeholder="Pesan Anda" rows="4" required></textarea></div>
-                    <div class="col-12"><input type="submit" value="Kirim Pesan" class="fit primary" /></div>
-                </div>
-            </form>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer id="footer">
-        <ul class="icons">
-            <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-            <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; 2025. All rights reserved.</li>
-        </ul>
-    </footer>
-</body>
+	<head>
+		<title>Kontak - SMK Negeri 1 Subang</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+			/* Contoh styling tambahan untuk navbar jika diperlukan */
+			.navbar {
+				background: #333;
+				padding: 15px;
+			}
+			.navbar ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				justify-content: center;
+			}
+			.navbar ul li {
+				margin: 0 10px;
+			}
+			.navbar ul li a {
+				color: #fff;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+			<!-- Header -->
+			<header id="header">
+				<h1 id="logo"><a href="index.html">SMK Negeri 1 Subang</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">HOME</a></li>
+						<li><a href="tentangkami.html">TENTANG KAMI</a></li>
+						<!-- Gunakan link anchor #contact untuk scroll ke bawah -->
+						<li><a href="#contact">CONTACT</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main Content -->
+			<div id="main" class="wrapper style1">
+				<div class="container">
+					<!-- Konten lain bisa diletakkan di sini -->
+
+					<!-- Section Contact -->
+					<section id="contact" class="wrapper style2 special fade">
+						<div class="container">
+							<header>
+								<h2>Hubungi Kami</h2>
+								<p>Silakan isi formulir di bawah untuk menghubungi kami</p>
+							</header>
+							<form method="post" action="#" class="cta">
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="name" id="name" placeholder="Nama Anda" required />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="email" id="email" placeholder="Alamat Email" required />
+									</div>
+									<div class="col-12">
+										<textarea name="message" id="message" placeholder="Pesan Anda" rows="4" required></textarea>
+									</div>
+									<div class="col-12">
+										<input type="submit" value="Kirim Pesan" class="fit primary" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2025. All rights reserved.</li>
+				</ul>
+			</footer>
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
 </html>

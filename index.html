@@ -4,14 +4,16 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+
 <html>
 	<head>
-		<title>Landed by HTML5 UP</title>
+		<title>Dashboard</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+	
 	<body class="is-preload landing">
 		<div id="page-wrapper">
 
@@ -28,15 +30,53 @@
 				</header>
 
 			<!-- Banner -->
+			 <style>
+			.button-container {
+				display: flex;
+				gap: 10px;
+				justify-content: center;
+				margin-top: 20px;
+			}
+			.btn {
+				padding: 10px 20px;
+				font-size: 16px;
+				font-weight: bold;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: 0.3s;
+				border: none;
+				text-decoration: none;
+				text-align: center;
+				display: inline-block;
+				color: white;
+			}
+			.btn-login {
+				background: #00ff99;
+			}
+			.btn-login:hover {
+				background: #00cc77;
+			}
+			.btn-register {
+				background: #ffffff;
+				color: #000;
+				border: 2px solid #ccc;
+			}
+			.btn-register:hover {
+				background: #f0f0f0;
+			}
+			</style>
 				<section id="banner">
 					<div class="content">
 						<class="image"><img src="images/u.png" alt="" />
 						<header>
 							<h2>Selamat Datang di Portal PKL SMKN 1 Subang!</h2>
-							<p>Kami menyediakan akses bagi siswa untuk mendaftar Praktik Kerja Lapangan (PKL)<br/>
-								di berbagai perusahaan mitra. Pastikan Anda memilih tempat yang sesuai dengan keahlian<br/>
-								dan minat Anda untuk mendapatkan pengalaman kerja yang berharga.</p>
+							<p>Kami menyediakan akses bagi siswa untuk mendaftar Praktik Kerja Lapangan (PKL) di berbagai perusahaan mitra. Pastikan Anda memilih tempat yang sesuai dengan keahlian dan minat Anda untuk mendapatkan pengalaman kerja yang berharga. </p>
 						</header>
+						
+						<div class="button-container">
+							<a href="login.html" class="btn btn-login">Login</a>
+							<a href="daftar.html" class="btn btn-register">Daftar</a>
+						</div>
 					</div>
 					<a href="#one" class="goto-next scrolly">Next</a>
 				</section>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pengajuan Magang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0a192f;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            background-color: white;
+        }
+
+        button {
+            background: #0a192f;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background: #142747;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Pengajuan Magang</h1>
+        <form id="magangForm">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jurusan">Jurusan</label>
+                <select id="jurusan" name="jurusan" required>
+                    <option value="">Pilih Jurusan</option>
+                    <option value="akl">Akuntansi Keuangan dan Lembaga</option>
+                    <option value="pm">Pemasaran</option>
+                    <option value="mplb">Manajemen Perkantoran dan Layanan Bisnis</option>
+                    <option value="pplg">Pengembangan Perangkat Lunak dan Gim</option>
+                    <option value="tjkt">Teknik Jaringan Komputer dan Telekomunikasi</option>
+                    <option value="dkv">Desain Komunikasi Visual</option>
+                    <option value="tm">Teknik Mesin</option>
+                    <option value="to">Teknik Otomotif</option>
+                    <option value="tl">Teknik Logistik</option>
+                    <option value="kuliner">Kuliner</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tanggal_mulai">Tanggal Mulai Magang</label>
+                <input type="date" id="tanggal_mulai" name="tanggal_mulai" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tanggal_selesai">Tanggal Selesai Magang</label>
+                <input type="date" id="tanggal_selesai" name="tanggal_selesai" required>
+            </div>
+
+            <button type="submit">Ajukan Permohonan Magang</button>
+        </form>
+    </div>
+</body>
+</html>

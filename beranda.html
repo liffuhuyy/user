@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Siswa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -39,6 +38,17 @@
             background-color: white;
             margin: 2px 0;
             border-radius: 3px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .profile-icon img {
@@ -73,10 +83,23 @@
             cursor: pointer;
         }
 
+        .menu-group {
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #bdc3c7;
+        }
+
         .menu-item {
             padding: 12px 30px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none;
+            color: white;
+            display: block;
         }
 
         .menu-item:hover {
@@ -95,7 +118,6 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            text-align: center;
         }
 
         .welcome-title {
@@ -104,11 +126,15 @@
             color: #0a192f;
         }
 
+        .welcome-subtitle {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+        }
+
         .action-buttons {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         .btn {
@@ -120,6 +146,7 @@
             transition: background-color 0.3s, transform 0.2s;
             text-decoration: none;
             display: inline-block;
+            text-align: center;
         }
 
         .btn:hover {
@@ -136,9 +163,69 @@
             color: white;
         }
 
+        .stats-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #0a192f;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0a192f;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .view-more-container {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
         @media (max-width: 768px) {
             .action-buttons {
                 flex-direction: column;
+            }
+            
+            .stat-item {
+                min-width: 100%;
             }
         }
     </style>
@@ -160,24 +247,55 @@
 
     <div class="sidebar" id="sidebar">
         <div class="close-sidebar" id="closeSidebar">×</div>
+        
         <div class="menu-group">
-            <div class="menu-item">Beranda</div>
-            <div class="menu-item">Profil Saya</div>
+            <a href="index.html" class="menu-item">Beranda</a>
+            <a href="biodata.html" class="menu-item">Profil Saya</a>
+        </div>
+        
+        <div class="menu-group">
+            <div class="menu-title">Menu Utama</div>
+            <a href="#" class="menu-item">Presensi</a>
+            <a href="#" class="menu-item">Management Tugas</a>
+            <a href="magang.html" class="menu-item">Pengajuan Magang</a>
+        </div>
+        
+        <div class="menu-group">
+            <div class="menu-title">Lainnya</div>
+            <a href="#" class="menu-item">Kontak</a>
+            <a href="#" class="menu-item">Logout</a>
         </div>
     </div>
 
     <div class="container">
         <div class="welcome-card">
-            <h2 class="welcome-title">Selamat Datang, Siswa dan Siswi SMKN 1 Subang</h2>
-            <p class="welcome-subtitle">Tetap semangat! Jangan lupa absen dan isi task harian yaa.</p>
+            <h2 class="welcome-title">Selamat Datang, Siswa!</h2>
+            <p class="welcome-subtitle">Selamat datang di portal siswa SMK Teknologi. Silakan lengkapi biodata Anda dan ajukan program magang untuk memulai perjalanan pendidikan Anda.</p>
             <div class="action-buttons">
                 <a href="biodata.html" class="btn btn-primary">Lengkapi Biodata</a>
                 <a href="magang.html" class="btn btn-secondary">Ajukan Magang</a>
             </div>
         </div>
+
+        <div class="stats-card">
+            <div class="stat-item">
+                <div class="stat-icon">📚</div>
+                <div class="stat-value">5</div>
+                <div class="stat-label">Tugas yang harus dikerjakan</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">📋</div>
+                <div class="stat-value">8</div>
+                <div class="stat-label">Rekap Nilai</div>
+            </div>
+            <div class="view-more-container">
+                <a href="#" class="btn btn-primary">Lihat Selengkapnya</a>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Menu toggle functionality
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const closeSidebar = document.getElementById('closeSidebar');

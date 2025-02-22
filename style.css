@@ -31,7 +31,7 @@ html,body{
   color: #fff;
   user-select: none;
   border-radius: 15px 15px 0 0;
-  background: linear-gradient(-135deg,#011023, #e1e2e4);
+  background: linear-gradient(-135deg,#e9ebef, #042857);
 }
 .wrapper form{
   padding: 10px 30px 50px 30px;
@@ -94,7 +94,7 @@ form .content input{
   background: red;
 }
 form .content label{
-  color: #262626;
+  color: #f0f0f0;
   user-select: none;
   padding-left: 5px;
 }

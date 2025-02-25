@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Presensi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #001f3f; /* Navy color */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .date-time {
+            background-color: #002b56;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .time-block {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .time-block h3 {
+            margin: 0 0 5px 0;
+            color: #001f3f;
+            font-size: 16px;
+        }
+        
+        .time-block p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .action-btn {
+            display: block;
+            width: 97%;
+            padding: 13px;
+            background-color: #001f3f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .action-btn:hover {
+            background-color: #003366;
+        }
+        
+        .action-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            background-color: #f8f9fa;
+            color: #001f3f;
+            border: 2px solid #001f3f;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.late {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status.waiting {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .modal-content h3 {
+            color: #001f3f;
+            margin-top: 0;
+        }
+        
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .modal-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .confirm-btn {
+            background-color: #001f3f;
+            color: white;
+        }
+        
+        .cancel-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sistem Presensi Karyawan</h1>
+        </div>
+        <div class="date-time">
+            <div id="current-date"></div>
+            <div id="current-time"></div>
+        </div>
+        <div class="content">
+            <div class="time-info">
+                <div class="time-block">
+                    <h3>Jam Masuk</h3>
+                    <p>09:00</p>
+                </div>
+                <div class="time-block">
+                    <h3>Jam Keluar</h3>
+                    <p>17:00</p>
+                </div>
+            </div>
+            
+            <button id="check-in-btn" class="action-btn" disabled>Absen Masuk</button>
+            <button id="check-out-btn" class="action-btn" disabled>Absen Pulang</button>
+            
+            <div id="status-message" class="status hide"></div>
+            
+            <div style="margin-top: 30px;">
+                <a href="izinsakit.html" class="action-btn secondary-btn" style="text-decoration: none; text-align: center;">Sakit & Izin</a>
+                <a href="riwayatabsen.html" class="action-btn secondary-btn" style="text-decoration: none; text-align: center;">Riwayat Absensi</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Early Leave Modal -->
+    <div id="early-leave-modal" class="modal">
+        <div class="modal-content">
+            <h3>Konfirmasi Pulang Lebih Awal</h3>
+            <p>Anda akan pulang sebelum jam 17:00. Mohon berikan alasan:</p>
+            <textarea id="early-leave-reason" placeholder="Tuliskan alasan pulang lebih awal..."></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel-btn" onclick="closeEarlyLeaveModal()">Batal</button>
+                <button class="modal-btn confirm-btn" onclick="confirmEarlyLeave()">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to update date and time
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format date: Senin, 25 Februari 2025
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const dateStr = now.toLocaleDateString('id-ID', options);
+            
+            // Format time: 08:30:45
+            const timeStr = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            document.getElementById('current-date').textContent = dateStr;
+            document.getElementById('current-time').textContent = timeStr;
+            
+            return now;
+        }
+        
+        // Update date and time immediately and then every second
+        let now = updateDateTime();
+        setInterval(() => {
+            now = updateDateTime();
+            checkButtonState();
+        }, 1000);
+        
+        // Variables to track attendance status
+        let hasCheckedIn = false;
+        let hasCheckedOut = false;
+        let checkInTime = null;
+        let checkOutTime = null;
+        let isLate = false;
+        let earlyLeaveReason = "";
+        
+        // Get elements
+        const checkInBtn = document.getElementById('check-in-btn');
+        const checkOutBtn = document.getElementById('check-out-btn');
+        const statusMessage = document.getElementById('status-message');
+        const earlyLeaveModal = document.getElementById('early-leave-modal');
+        
+        // Function to check if current time is within check-in/out time
+        function checkButtonState() {
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTime = currentHour + (currentMinute / 60);
+            
+            // Check-in button is enabled only at or after 9:00
+            if (!hasCheckedIn) {
+                if (currentHour >= 9) {
+                    checkInBtn.disabled = false;
+                } else {
+                    checkInBtn.disabled = true;
+                }
+            } else {
+                checkInBtn.disabled = true;
+            }
+            
+            // Check-out button is enabled only after check-in
+            if (hasCheckedIn && !hasCheckedOut) {
+                checkOutBtn.disabled = false;
+            } else {
+                checkOutBtn.disabled = true;
+            }
+        }
+        
+        // Check-in button event listener
+        checkInBtn.addEventListener('click', function() {
+            hasCheckedIn = true;
+            checkInBtn.disabled = true;
+            checkInTime = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            // Check if late (after 09:05)
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            isLate = (hour > 9 || (hour === 9 && minute > 5));
+            
+            if (isLate) {
+                statusMessage.textContent = "Absen masuk berhasil pada " + checkInTime + " (TERLAMBAT)";
+                statusMessage.className = "status late";
+            } else {
+                statusMessage.textContent = "Absen masuk berhasil pada " + checkInTime;
+                statusMessage.className = "status success";
+            }
+            
+            // Enable check-out button
+            checkButtonState();
+            
+            // Store attendance data in localStorage to be accessible from riwayatabsen.html
+            storeAttendanceData(isLate, false, "");
+        });
+        
+        // Check-out button event listener
+        checkOutBtn.addEventListener('click', function() {
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            
+            // If before 17:00, show early leave modal
+            if (hour < 17) {
+                showEarlyLeaveModal();
+            } else {
+                completeCheckOut("");
+            }
+        });
+        
+        // Function to show early leave modal
+        function showEarlyLeaveModal() {
+            earlyLeaveModal.style.display = "flex";
+        }
+        
+        // Function to close early leave modal
+        function closeEarlyLeaveModal() {
+            earlyLeaveModal.style.display = "none";
+            document.getElementById('early-leave-reason').value = "";
+        }
+        
+        // Function to confirm early leave
+        function confirmEarlyLeave() {
+            const reason = document.getElementById('early-leave-reason').value;
+            if (reason.trim() === "") {
+                alert("Mohon berikan alasan pulang lebih awal!");
+                return;
+            }
+            
+            completeCheckOut(reason);
+            closeEarlyLeaveModal();
+        }
+        
+        // Function to complete check-out process
+        function completeCheckOut(reason) {
+            hasCheckedOut = true;
+            checkOutBtn.disabled = true;
+            checkOutTime = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            earlyLeaveReason = reason;
+            
+            const hour = now.getHours();
+            const isEarlyLeave = hour < 17;
+            
+            if (isEarlyLeave) {
+                statusMessage.textContent = "Absen pulang berhasil pada " + checkOutTime + " (LEBIH AWAL)";
+                statusMessage.className = "status waiting";
+            } else {
+                statusMessage.textContent = "Absen pulang berhasil pada " + checkOutTime;
+                statusMessage.className = "status success";
+            }
+            
+            // Update attendance data in localStorage
+            updateAttendanceData(checkOutTime, isEarlyLeave, reason);
+        }
+        
+        // Function to store attendance data in localStorage
+        function storeAttendanceData(isLate, isEarlyLeave, reason) {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const dateStr = now.toLocaleDateString('id-ID', options);
+            
+            // Get existing attendance records
+            let attendanceHistory = JSON.parse(localStorage.getItem('attendanceHistory')) || [];
+            
+            // Add new attendance record
+            const newRecord = {
+                date: dateStr,
+                checkIn: checkInTime,
+                checkOut: "",
+                isLate: isLate,
+                earlyLeave: isEarlyLeave,
+                reason: reason
+            };
+            
+            // Add to beginning of array
+            attendanceHistory.unshift(newRecord);
+            
+            // Store in localStorage
+            localStorage.setItem('attendanceHistory', JSON.stringify(attendanceHistory));
+        }
+        
+        // Function to update attendance data with check-out information
+        function updateAttendanceData(checkOutTime, isEarlyLeave, reason) {
+            // Get existing attendance records
+            let attendanceHistory = JSON.parse(localStorage.getItem('attendanceHistory')) || [];
+            
+            // Update the most recent record (first in the array)
+            if (attendanceHistory.length > 0) {
+                attendanceHistory[0].checkOut = checkOutTime;
+                attendanceHistory[0].earlyLeave = isEarlyLeave;
+                attendanceHistory[0].reason = reason;
+                
+                // Store updated records
+                localStorage.setItem('attendanceHistory', JSON.stringify(attendanceHistory));
+            }
+        }
+        
+        // Initial button state check
+        checkButtonState();
+        
+        // For demo purposes only - to test functionality easily
+        function setDemoTime(hour, minute = 0) {
+            const demoDate = new Date();
+            demoDate.setHours(hour, minute, 0);
+            now = demoDate;
+            updateDateTime();
+            checkButtonState();
+            console.log("Demo time set to " + hour + ":" + (minute < 10 ? "0" + minute : minute));
+        }
+    </script>
+</body>
+</html>

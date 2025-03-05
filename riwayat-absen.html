@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Absen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4CAF50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .dropdown {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .absen-item {
+            margin-top: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 10px;
+            color: white;
+            font-size: 12px;
+            display: inline-block;
+        }
+        .hadir { background: #4CAF50; }
+        .izin { background: #2196F3; }
+        .sakit { background: #FF9800; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">RIWAYAT ABSEN</div>
+        <div class="dropdown">
+            <select id="bulan">
+                <option value="">Pilih Bulan</option>
+                <option>Januari</option>
+                <option>Februari</option>
+                <option>Maret</option>
+                <option>April</option>
+                <option>Mei</option>
+                <option>Juni</option>
+                <option>Juli</option>
+                <option>Agustus</option>
+                <option>September</option>
+                <option>Oktober</option>
+                <option>November</option>
+                <option>Desember</option>
+            </select>
+            <select id="tahun">
+                <option value="">Pilih Tahun</option>
+            </select>
+        </div>
+        <div class="absen-item">
+            <p>Nama Siswa<br>09.00 - 17.00</p>
+            <span class="status hadir">Hadir</span>
+        </div>
+        <div class="absen-item">
+            <p>Nama Siswa<br>Menjenguk Nenek</p>
+            <span class="status izin">Izin</span>
+        </div>
+        <div class="absen-item">
+            <p>Nama Siswa<br>Flu</p>
+            <span class="status sakit">Sakit</span>
+        </div>
+    </div>
+
+    <script>
+        const tahunSelect = document.getElementById("tahun");
+        const currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= currentYear - 10; i--) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            tahunSelect.appendChild(option);
+        }
+    </script>
+</body>
+</html>

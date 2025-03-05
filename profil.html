@@ -58,6 +58,19 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .btn-primary {
+            background-color: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background-color: #1e293b;
+        }
         .logout-link {
     text-decoration: none;
     color: black;
@@ -82,24 +95,47 @@
             <a href="biodata.html" class="button">Biodata</a>
         </div><br><br><br><br><br>
         <p><a href="index.html" class="logout-link">Logout</a></p>
-
     </div>
 
     
     
-    <!-- Kontainer Edit Profil -->
-    <div class="container" id="editProfile" style="display: none;">
-        <h3>Edit Profil</h3>
-        <div class="profile-pic"></div>
-        <p><a href="#">Ubah Foto Profil</a></p>
-        <div class="edit-container">
-            <input type="text" placeholder="Nama Lengkap">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="No HP">
-            <input type="password" placeholder="Ubah Kata Sandi">
-        </div>
-        <button class="button">Simpan Perubahan</button>
-        <p><a href="forgot-password.html">Forgot your Password?</a></p>
+ <!-- Kontainer Edit Profil -->
+<div class="container" id="editProfile" style="display: none;">
+    <h3>Edit Profil</h3>
+    <div class="profile-pic">
     </div>
+    <input type="file" id="fileInput" accept="image/*" capture="environment" style="display: none;">
+    <p><a href="#" id="changePhoto">Ubah Foto Profil</a></p>
+    
+    <div class="edit-container">
+        <input type="text" id="fullName" placeholder="Nama Lengkap">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="phone" placeholder="No HP">
+        <input type="password" id="password" placeholder="Ubah Kata Sandi">
+    </div>
+    <button type="submit" class="btn-primary">Simpan perubahan</button>
+    <p><a href="forgot-password.html">Forgot your Password?</a></p>
+</div>
+
+<script>
+    // Event listener untuk tombol "Ubah Foto Profil"
+    document.getElementById("changePhoto").addEventListener("click", function() {
+        document.getElementById("fileInput").click();
+    });
+
+    // Mengubah foto profil saat dipilih
+    document.getElementById("fileInput").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profileImage").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>
+
 </body>
 </html>

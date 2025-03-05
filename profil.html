@@ -33,20 +33,24 @@
         .button-container {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 10px;
         }
         .button {
-            display: block;
-            width: 100%;
-            padding: 9px;
+            width: 100%; /* Pastikan lebar tombol sama */
+            padding: 12px;
             background: black;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block; /* Pastikan tidak berubah ukurannya */
+            box-sizing: border-box; /* Hindari perubahan ukuran karena padding */
         }
+
         .edit-container input {
             width: 100%;
             padding: 8px;
@@ -54,6 +58,11 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .logout-link {
+    text-decoration: none;
+    color: black;
+}
+
     </style>
     <script>
         function showEditProfile() {
@@ -66,15 +75,17 @@
     <!-- Kontainer Profil Pengguna -->
     <div class="container" id="profileContainer">
         <div class="profile-pic"></div>
-        <h3>Nama</h3>
-        <p>08575467890</p>
+        <h3>Nama siswa</h3>
+        <p>08575467890</p><br><br><br>
         <div class="button-container">
             <button class="button" onclick="showEditProfile()">Edit Profile</button>
             <a href="biodata.html" class="button">Biodata</a>
-        </div>
-        <p><a href="index.html">Logout</a></p>
-    
+        </div><br><br><br><br><br>
+        <p><a href="index.html" class="logout-link">Logout</a></p>
+
     </div>
+
+    
     
     <!-- Kontainer Edit Profil -->
     <div class="container" id="editProfile" style="display: none;">

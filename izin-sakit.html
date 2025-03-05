@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Izin/Sakit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        select, textarea, button {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-save {
+            background: linear-gradient(to right, #0a192f, #000000);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>IZIN/SAKIT</h3> 
+        <select>
+            <option value="izin">Izin</option>
+            <option value="sakit">Sakit</option>
+        </select>
+        <textarea placeholder="Alasan..."></textarea>
+        <div class="button-container">
+            <a href="presensi.html" class="btn btn-save">Confirm</a>
+        </div>
+    </div>
+</body>
+</html>

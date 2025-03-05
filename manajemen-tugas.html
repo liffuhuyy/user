@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Manajemen Tugas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a252f;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        select, input, button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select, input {
+            flex-grow: 1;
+            background-color: white;
+            color: #333;
+        }
+
+        button {
+            background-color: #1a252f;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+        }
+
+        button:hover {
+            background-color:  #1a252f;
+        }
+
+        .task-list {
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .task-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid  #1a252f;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .task-checkbox:checked {
+            background-color:  #1a252f;
+            border-color:  #1a252f;
+        }
+
+        .task-checkbox:checked::after {
+            content: '✔';
+            color: white;
+            display: block;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        small {
+            color: #666;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Manajemen Tugas</h1>
+        </div>
+        
+        <div class="input-section">
+            <select id="bulan">
+                <option value="">Pilih Bulan</option>
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Maret</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">Agustus</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+            </select>
+            
+            <select id="tahun">
+                <option value="">Pilih Tahun</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+            </select>
+        </div>
+        
+        <div class="input-section">
+            <input type="text" id="tugas" placeholder="Masukkan tugas baru">
+            <button onclick="tambahTugas()">Tambah Tugas</button>
+        </div>
+        
+        <div class="task-list" id="daftarTugas">
+            <!-- Tugas akan ditambahkan di sini secara dinamis -->
+        </div>
+    </div>
+
+    <script>
+        function tambahTugas() {
+            const tugasInput = document.getElementById('tugas');
+            const bulanSelect = document.getElementById('bulan');
+            const tahunSelect = document.getElementById('tahun');
+            const daftarTugas = document.getElementById('daftarTugas');
+
+            if (tugasInput.value && bulanSelect.value && tahunSelect.value) {
+                const taskItem = document.createElement('div');
+                taskItem.classList.add('task-item');
+                
+                const formattedDate = `${tahunSelect.value}-${bulanSelect.value}-${new Date().getDate().toString().padStart(2, '0')}`;
+
+                taskItem.innerHTML = `
+                    <div class="task-details">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>${tugasInput.value}</span>
+                        <small>(${formattedDate})</small>
+                    </div>
+                    <button onclick="hapusTugas(this)">Hapus</button>
+                `;
+
+                daftarTugas.appendChild(taskItem);
+                
+                // Reset input
+                tugasInput.value = '';
+            } else {
+                alert('Harap isi semua field: tugas, bulan, dan tahun');
+            }
+        }
+
+        function hapusTugas(button) {
+            button.closest('.task-item').remove();
+        }
+    </script>
+</body>
+</html>

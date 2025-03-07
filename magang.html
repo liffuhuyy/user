@@ -59,6 +59,12 @@
             background-color: white;
         }
 
+        :root {
+            --primary-bg: linear-gradient(to right, #0a192f, #000000);
+            --primary-text: white;
+            --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         .button-container {
             display: flex;
             justify-content: center;
@@ -72,19 +78,20 @@
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             text-decoration: none;
             text-align: center;
+            outline: none;
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--hover-shadow);
         }
 
-        .btn-save {
-            background: linear-gradient(to right, #0a192f, #000000);
-            color: white;
+        .btn-submit {
+            background: var(--primary-bg);
+            color: var(--primary-text);
         }
 
         @media (max-width: 768px) {
@@ -130,10 +137,10 @@
                 <label for="tanggal_selesai">Tanggal Selesai Magang</label>
                 <input type="date" id="tanggal_selesai" name="tanggal_selesai" required>
             </div>
-            <button type="submit">Ajukan Permohonan Magang</button>
             <div class="button-container">
-                <a href="beranda.html" class="btn btn-save">Ajukan Permohonan Magang</a>
+                <button type="submit" class="btn btn-submit">Ajukan Permohonan Magang</button>
             </div>
+        
         </form>
     </div>
 </body>

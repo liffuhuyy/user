@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilai Aktivitas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .box {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .baik { background: #d4edda; color: #155724; }
+        .sangat-baik { background: #c3e6cb; color: #155724; }
+        .kurang-baik { background: #f8d7da; color: #721c24; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">📅 Nilai Aktivitas Februari 2025</div>
+        <div class="box">Rata-rata Nilai: <b>89.0</b></div>
+        <div class="box">Total Aktivitas: <b>3</b></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Aktivitas</th>
+                    <th>Nilai</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1/2/2025</td>
+                    <td>Tugas Harian</td>
+                    <td>85</td>
+                    <td><span class="status baik">Baik</span></td>
+                </tr>
+                <tr>
+                    <td>2/2/2025</td>
+                    <td>Quiz</td>
+                    <td>90</td>
+                    <td><span class="status sangat-baik">Sangat Baik</span></td>
+                </tr>
+                <tr>
+                    <td>3/2/2025</td>
+                    <td>Praktikum</td>
+                    <td>85</td>
+                    <td><span class="status kurang-baik">Kurang Baik</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

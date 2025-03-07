@@ -40,23 +40,64 @@
             margin: 2px 0;
             border-radius: 3px;
         }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(to bottom, #0a192f, #111827);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding-top: 60px;
+            color: white;
+        }
 
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .sidebar.active {
+            left: 0;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
             cursor: pointer;
         }
 
+        .menu-group {
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #bdc3c7;
+        }
+
+        .menu-item {
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .menu-item:hover {
+            background-color: #172a46;
+        }
+        .profile-icon a {
+             display: block; 
+             width: 100%;
+             height: 100%;
+        }
         .profile-icon img {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            object-fit: cover;
+             width: 40px;
+             height: 40px;
+             border-radius: 50%;
+             object-fit: cover;
+             cursor: pointer;
         }
 
         .container {
@@ -207,6 +248,22 @@
             margin-left: 3px;
         }
 
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+
         @media (max-width: 768px) {
             .form-row {
                 flex-direction: column;
@@ -219,52 +276,43 @@
         }
     </style>
 </head>
-<body>
-<<<<<<< HEAD
-  <div class="header">
-        <div class="menu-toggle" id="menuToggle">
-=======
-    <div class="header">
-        <div class="menu-toggle">   
->>>>>>> 87eeef36eb5bb4aabec25f968c5ec5988e419106
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <h3>SMKN 1 SUBANG</h3>
-        <div class="profile-icon">
-<<<<<<< HEAD
-            <a href="profil.html">
-                <img src="profil.jpg" alt="Profile Picture">
-            </a>
-        </div>
-    </div>
-    <div class="overlay" id="overlay"></div>
 
-    <div class="sidebar" id="sidebar">
-        <div class="close-sidebar" id="closeSidebar">×</div>
-        
-        <div class="menu-group">
-            <a href="beranda.html" class="menu-item">Beranda</a>
-            <a href="profil.html" class="menu-item">Profil Saya</a>
-        </div>
-        
-        <div class="menu-group">
-            <div class="menu-title">Menu Utama</div>
-            <a href="presensi.html" class="menu-item">Presensi</a>
-            <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
-            <a href="magang.html" class="menu-item">Pengajuan Magang</a>
-        </div>
-        
-        <div class="menu-group">
-            <div class="menu-title">Lainnya</div>
-            <a href="contact.html" class="menu-item">Kontak</a>
-            <a href="index.html" class="menu-item">Logout</a>
-=======
-            <img src="/api/placeholder/100/100" alt="Profile Picture">
->>>>>>> 87eeef36eb5bb4aabec25f968c5ec5988e419106
-        </div>
+<body><div class="header">
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+    <h3>SMKN 1 SUBANG</h3>
+    <div class="profile-icon">
+        <a href="profil.html">
+            <img src="profil.jpg" alt="Profile Picture">
+        </a>
+    </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+    <div class="close-sidebar" id="closeSidebar">×</div>
+
+    <div class="menu-group">
+        <a href="beranda.html" class="menu-item">Beranda</a>
+        <a href="profil.html" class="menu-item">Profil Saya</a>
+    </div>
+
+    <div class="menu-group">
+        <div class="menu-title">Menu Utama</div>
+        <a href="presensi.html" class="menu-item">Presensi</a>
+        <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
+        <a href="magang.html" class="menu-item">Pengajuan Magang</a>
+    </div>
+
+    <div class="menu-group">
+        <div class="menu-title">Lainnya</div>
+        <a href="contact.html" class="menu-item">Kontak</a>
+        <a href="index.html" class="menu-item">Logout</a>
+    </div>
+</div>
 
     <div class="container">
         <div class="form-card">
@@ -393,6 +441,30 @@
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const closeSidebar = document.getElementById("closeSidebar");
+
+    // Menampilkan sidebar saat menu toggle diklik
+    menuToggle.addEventListener("click", function () {
+        sidebar.classList.add("active");
+        overlay.style.display = "block";
+    });
+
+    // Menyembunyikan sidebar saat tombol close diklik
+    closeSidebar.addEventListener("click", function () {
+        sidebar.classList.remove("active");
+        overlay.style.display = "none";
+    });
+
+    // Menyembunyikan sidebar saat overlay diklik
+    overlay.addEventListener("click", function () {
+        sidebar.classList.remove("active");
+        overlay.style.display = "none";
+    });
+});
         document.getElementById('biodataForm').addEventListener('submit', function(e) {
             e.preventDefault();
             // Simulate form submission

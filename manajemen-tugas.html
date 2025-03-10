@@ -2,21 +2,144 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Manajemen Tugas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Siswa</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: white;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, #0a192f, #000000);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        .menu-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #bdc3c7;
+        }
+        .profile-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #0a192f;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding-top: 60px;
+            color: white;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .menu-item {
+            padding: 12px 30px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background-color: #172a46;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .welcome-card, .stats-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #0a192f;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0a192f;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
         .container {
             background-color: #f9f9f9;
             border-radius: 10px;
@@ -111,12 +234,59 @@
 
         small {
             color: #666;
-            margin-left: 10px;
+            margin-left: 10px;
+        }
+
+         h1 {
+            color: rgb(255, 255, 255);
+            text-align: center;
+            margin: 0 auto;
+            }
+        h3 {
+             color: rgb(255, 255, 255);
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header">
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h3>SMKN 1 SUBANG</h3>
+
+            <div class="profile-icon">
+                <a href="profil.html">
+                    <img src="profil.html" alt="Profile Picture">
+                </a>
+            </div>            
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-sidebar" id="closeSidebar">×</div>
+        
+        <div class="menu-group">
+            <a href="beranda.html" class="menu-item">Beranda</a>
+            <a href="profil.html" class="menu-item">Profil Saya</a>
+        </div>
+        
+        <div class="menu-group">
+            <div class="menu-title">Menu Utama</div>
+            <a href="presensi.html" class="menu-item">Presensi</a>
+            <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
+            <a href="magang.html" class="menu-item">Pengajuan Magang</a>
+        </div>
+        
+        <div class="menu-group">
+            <div class="menu-title">Lainnya</div>
+            <a href="kontak.html" class="menu-item">Kontak</a>
+            <a href="index.html" class="menu-item">Logout</a>
+        </div>
+    </div>
+<div class="container">
         <div class="header">
             <h1>Manajemen Tugas</h1>
         </div>
@@ -158,40 +328,27 @@
         </div>
     </div>
 
+
     <script>
-        function tambahTugas() {
-            const tugasInput = document.getElementById('tugas');
-            const bulanSelect = document.getElementById('bulan');
-            const tahunSelect = document.getElementById('tahun');
-            const daftarTugas = document.getElementById('daftarTugas');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const overlay = document.getElementById('overlay');
 
-            if (tugasInput.value && bulanSelect.value && tahunSelect.value) {
-                const taskItem = document.createElement('div');
-                taskItem.classList.add('task-item');
-                
-                const formattedDate = `${tahunSelect.value}-${bulanSelect.value}-${new Date().getDate().toString().padStart(2, '0')}`;
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
 
-                taskItem.innerHTML = `
-                    <div class="task-details">
-                        <input type="checkbox" class="task-checkbox">
-                        <span>${tugasInput.value}</span>
-                        <small>(${formattedDate})</small>
-                    </div>
-                    <button onclick="hapusTugas(this)">Hapus</button>
-                `;
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
 
-                daftarTugas.appendChild(taskItem);
-                
-                // Reset input
-                tugasInput.value = '';
-            } else {
-                alert('Harap isi semua field: tugas, bulan, dan tahun');
-            }
-        }
-
-        function hapusTugas(button) {
-            button.closest('.task-item').remove();
-        }
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
     </script>
 </body>
 </html>

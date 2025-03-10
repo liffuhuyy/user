@@ -3,33 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Presensi</title>
+    <title>Dashboard Siswa</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
+        body {
+            background-color: #f5f5f5;
+        }
         .container {
-            width: 100%;
             max-width: 500px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            
         }
         
         .header {
-            background-color: #001f3f; /* Navy color */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, #0a192f, #000000);
             color: white;
-            padding: 20px;
-            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
         .header h1 {
@@ -193,15 +195,185 @@
             background-color: #f8f9fa;
             border: 1px solid #ddd;
         }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, #0a192f, #000000);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-        
+        .menu-toggle {
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+
+        .profile-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #0a192f;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding-top: 60px;
+            color: white;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .menu-item {
+            padding: 12px 30px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background-color: #172a46;
+        }
+        .menu-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #bdc3c7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .welcome-card, .stats-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #0a192f;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0a192f;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+.header h1 {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+}
+
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h3>SMKN 1 SUBANG</h3>
+
+            <div class="profile-icon">
+                <a href="profil.html">
+                    <img src="profil.html" alt="Profile Picture">
+                </a>
+            </div>            
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-sidebar" id="closeSidebar">×</div>
+        
+        <div class="menu-group">
+            <a href="beranda.html" class="menu-item">Beranda</a>
+            <a href="profil.html" class="menu-item">Profil Saya</a>
+        </div>
+        
+        <div class="menu-group">
+            <div class="menu-title">Menu Utama</div>
+            <a href="presensi.html" class="menu-item">Presensi</a>
+            <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
+            <a href="magang.html" class="menu-item">Pengajuan Magang</a>
+        </div>
+        
+        <div class="menu-group">
+            <div class="menu-title">Lainnya</div>
+            <a href="kontak.html" class="menu-item">Kontak</a>
+            <a href="index.html" class="menu-item">Logout</a>
+        </div>
+    </div>
+
     <div class="container">
+
         <div class="header">
             <h1>Presensi</h1>
         </div>
+
         <div class="date-time">
             <div id="current-date"></div>
             <div id="current-time"></div>
@@ -470,6 +642,26 @@
             checkButtonState();
             console.log("Demo time set to " + hour + ":" + (minute < 10 ? "0" + minute : minute));
         }
+               // Menu toggle functionality
+               const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebar = document.getElementById('closeSidebar');  
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeSidebar.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
     </script>
 </body>
 </html>

@@ -26,29 +26,30 @@
          <div class="title">
             Login
          </div>
-         <form action="beranda.html" method="get">
+         <form action="proses_login.php" method="post"> <!-- Ubah GET menjadi POST -->
             <div class="field">
-               <input type="text" required>
-               <label>Email </label>
+                <input type="text" name="email" required> <!-- Tambahkan name="email" -->
+                <label>Email </label>
             </div>
             <div class="field password-field">
-               <input type="password" id="password" oninput="checkPasswordInput()" required>
-               <label>Password</label>
-               <i class="toggle-password fas fa-eye-slash" onclick="togglePassword()"></i>
+                <input type="password" name="password" id="password" oninput="checkPasswordInput()" required> <!-- Tambahkan name="password" -->
+                <label>Password</label>
+                <i class="toggle-password fas fa-eye-slash" onclick="togglePassword()"></i>
             </div>
-           <br>
+            <br>
             <div class="field">
-               <input type="submit" value="Login">
-            </div> 
+                <input type="submit" value="Login">
+            </div>
             <div class="content">
-                <div class="pass-link">
-                   <a href="forgot-password.html">Forgot password?</a>
-                </div>
-             </div>
-             <div class="signup-link">
-                Belum Punya Akun? <a href="daftar.html">Daftar sekarang</a>
-             </div>
-         </form>
+               <div class="pass-link">
+                  <a href="forgot-password.html">Forgot password?</a>
+               </div>
+            </div>
+            <div class="signup-link">
+               Belum Punya Akun? <a href="daftar.html">Daftar sekarang</a>
+            </div>
+        </form>
+        
       </div>
 
       <!-- Script untuk mengatur fungsi toggle password dan tampilan ikon -->

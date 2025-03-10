@@ -28,33 +28,31 @@
             Daftar
          </div>
          
-         <form action="login.html">
+         <form action="proses_daftar.php" method="POST">
             <div class="field">
-                <input type="text" required>
-                <label>Nama </label>
-             </div>
-            <div class="field">
-               <input type="text" required>
-               <label>Email </label>
-            </div>
-            <div class="field password-field">
-               <input type="password" id="password" oninput="checkPasswordInput()" required>
-               <label>Password</label>
-               <i class="toggle-password fas fa-eye-slash" onclick="togglePassword()"></i>
+                <input type="text" name="nama" required>
+                <label>Nama</label>
             </div>
             <div class="field">
-                <input type="text" required>
-                <label>No Hp </label>
-             </div>
-           <br>
+                <input type="email" name="email" required>
+                <label>Email</label>
+            </div>
             <div class="field">
-               <input type="submit" value="Daftar">
-            </div> 
+                <input type="password" name="password" required>
+                <label>Password</label>
+            </div>
+            <div class="field">
+                <input type="text" name="no_hp" required>
+                <label>No Hp</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Daftar">
+            </div>
             <div class="signup-link">
-                Sudah Punya Akun? <a href="login.html">Login</a>
-             </div>
-             
-         </form>
+               Sudah Punya Akun? <a href="login.html">Login</a>
+            </div>
+
+        </form>
       </div>
 
       <script>

@@ -471,6 +471,14 @@
             alert('Data berhasil disimpan!');
             // In actual implementation, add AJAX to submit form data to server
         });
+
+
+        document.getElementById('biodataForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Data berhasil disimpan!');
+    window.location.href = 'beranda.html'; // Ganti dengan halaman beranda yang sesuai
+});
+
     </script>
 </body>
 </html>

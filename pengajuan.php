@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php';
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -38,7 +42,163 @@
             margin: 0;
             font-size: 24px;
         }
-
+        
+        .date-time {
+            background-color: #002b56;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .time-block {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .time-block h3 {
+            margin: 0 0 5px 0;
+            color: #001f3f;
+            font-size: 16px;
+        }
+        
+        .time-block p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .action-btn {
+            display: block;
+            width: 97%;
+            padding: 13px;
+            background-color: #001f3f;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .action-btn:hover {
+            background-color: #003366;
+        }
+        
+        .action-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            background-color: #f8f9fa;
+            color: #001f3f;
+            border: 2px solid #001f3f;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.late {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status.waiting {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .modal-content h3 {
+            color: #001f3f;
+            margin-top: 0;
+        }
+        
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .modal-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .confirm-btn {
+            background-color: #001f3f;
+            color: white;
+        }
+        
+        .cancel-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
         .header {
             display: flex;
             justify-content: space-between;
@@ -169,86 +329,97 @@
     text-align: center;
     margin: 0;
 }
+body, h1, h2, table {
+    margin: 0;
+    padding: 0;
+}
 
-.container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
 
-        h1 {
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #0056b3;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #007bff;
+}
+
+a {
+    text-decoration: none;
+    color: #0056b3;
+    margin: 0 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color:rgb(255, 255, 255);
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #003366;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.tombol {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 18px;
+            color: white;
+            background-color:rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
             text-align: center;
-            color: #0a192f;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
             font-weight: bold;
         }
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
+        .tombol:hover {
+            background-color:rgb(0, 19, 39);
         }
 
-        select {
-            background-color: white;
-        }
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 14px;}
+    }
 
-        :root {
-            --primary-bg: linear-gradient(to right, #0a192f, #000000);
-            --primary-text: white;
-            --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            text-decoration: none;
-            text-align: center;
-            outline: none;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .btn-submit {
-            background: var(--primary-bg);
-            color: var(--primary-text);
-        }
-
-        @media (max-width: 768px) {
-            .form-row {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
+    h1 {
+        font-size: 24px;
+    }
+    h2{
+        font-size: 24px;
+        color:rgb(0, 0, 0);  
+    }
     </style>
 </head>
 <body>
@@ -292,46 +463,36 @@
     </div>
 
     <div class="container">
-        <h1>Form Pengajuan Magang</h1>
-        <form id="proses_magang" method="POST" action="proses_magang.php">
-            <div class="form-group">
-                <label for="nama">Nama Lengkap</label>
-                <input type="text" id="nama" name="nama" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="jurusan">Jurusan</label>
-                <select id="jurusan" name="jurusan" required>
-                    <option value="">Pilih Jurusan</option>
-                    <option value="AKL" <?php echo (isset($jurusan) && $jurusan == 'AKL') ? 'selected' : ''; ?>Akuntansi Keuangan dan Lembaga</option>
-                    <option value="RPL" <?php echo (isset($jurusan) && $jurusan == 'RPL') ? 'selected' : ''; ?>Rekayasa perangkat lunak</option>
-                    <option value="TKJ" <?php echo (isset($jurusan) && $jurusan == 'TKJ') ? 'selected' : ''; ?>Teknik Jaringan Dan Komputer</option>
-                    <option value="KL" <?php echo (isset($jurusan) && $jurusan == 'KL') ? 'selected' : ''; ?>Kuliner</option>
-                    <option value="TL" <?php echo (isset($jurusan) && $jurusan == 'TL') ? 'selected' : ''; ?>Teknik Logistik</option>
-                    <option value="MPLB" <?php echo (isset($jurusan) && $jurusan == 'MPLB') ? 'selected' : ''; ?>Manajemen Perkantoran dan Layanan Bisnis</option>
-                    <option value="TO" <?php echo (isset($jurusan) && $jurusan == 'TO') ? 'selected' : ''; ?>Teknik Otomotif</option>
-                    <option value="TPM" <?php echo (isset($jurusan) && $jurusan == 'TPM') ? 'selected' : ''; ?>Teknik Permesinan</option>
-                    <option value="DKV" <?php echo (isset($jurusan) && $jurusan == 'DKV') ? 'selected' : ''; ?>Desain Komunikasi Visual</option>
-                    <option value="PM" <?php echo (isset($jurusan) && $jurusan == 'PM') ? 'selected' : ''; ?>Pemasaran</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="tanggal_mulai">Tanggal Mulai Magang</label>
-                <input type="date" id="tanggal_mulai" name="tanggal_mulai" value="<?php echo isset($tanggal_mulai) ? $tanggal_mulai : ''; ?>" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tanggal_selesai">Tanggal Selesai Magang</label>
-                <input type="date" id="tanggal_selesai" name="tanggal_selesai" value="<?php echo isset($tanggal_selesai) ? $tanggal_selesai : ''; ?>" required>
-            </div>
-            
-            <div class="button-container">
-                <button type="submit" class="btn btn-submit">Ajukan Permohonan Magang</button>
-            </div>
+<php>     
+<h2>Data Siswa Magang</h2>
+    <table>
+        <tr>
+            <th>Nama Siswa</th>
+            <th>Jurusan</th>
+            <th>Tanggal Masuk</th>
+            <th>Tanggal Keluar</th>
+        </tr>
+        <?php
+        $query = "SELECT * FROM siswa_magang ORDER BY tanggal_mulai DESC";
+        $result = $conn->query($query);
         
-        </form>
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['nama']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['jurusan']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['tanggal_mulai']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['tanggal_selesai']) . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4' style='text-align: center;'>Belum ada data</td></tr>";
+        }
+        ?>
+    </table>
+    <a href="magang.html" class="tombol">Buat Pengajuan</a>
     </div>
+
 
     <script>
                // Menu toggle functionality

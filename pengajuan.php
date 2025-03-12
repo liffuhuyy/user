@@ -471,6 +471,7 @@ tr:hover {
             <th>Jurusan</th>
             <th>Tanggal Masuk</th>
             <th>Tanggal Keluar</th>
+            <th>Perusahaan</th>
         </tr>
         <?php
         $query = "SELECT * FROM siswa_magang ORDER BY tanggal_mulai DESC";
@@ -483,10 +484,11 @@ tr:hover {
                 echo "<td>" . htmlspecialchars($row['jurusan']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['tanggal_mulai']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['tanggal_selesai']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['perusahaan']) . "</td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='4' style='text-align: center;'>Belum ada data</td></tr>";
+            echo "<tr><td colspan='5' style='text-align: center;'>Belum ada data</td></tr>";
         }
         ?>
     </table>

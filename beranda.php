@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<?php
+// Panggil koneksi ke database
+include 'koneksi.php';
+
+// Ambil hasilnya
+$query = "SELECT COUNT(*) AS total FROM tugas";
+$result = mysqli_query($conn, $query);
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $total_tugas = $row['total'];
+} else {
+    $total_tugas = 0; // Nilai default jika query gagal
+}
+
+
+$conn->close();
+?><!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -247,14 +263,14 @@
         <div class="close-sidebar" id="closeSidebar">×</div>
         
         <div class="menu-group">
-            <a href="beranda.html" class="menu-item">Beranda</a>
+            <a href="beranda.php" class="menu-item">Beranda</a>
             <a href="profil.html" class="menu-item">Profil Saya</a>
         </div>
         
         <div class="menu-group">
             <div class="menu-title">Menu Utama</div>
             <a href="presensi.html" class="menu-item">Presensi</a>
-            <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
+            <a href="manajemen-tugas.php" class="menu-item">Management Tugas</a>
             <a href="pengajuan.php" class="menu-item">Pengajuan Magang</a>
         </div>
         
@@ -277,10 +293,10 @@
 
         <div class="stats-card">
             <div class="stat-item">
-                <div class="stat-icon">📚</div>
-                <div class="stat-value">5</div>
-                <div class="stat-label">Tugas yang harus dikerjakan</div>
-            </div>
+                <div>
+                    <a href="manajemen-tugas.php" class="stat-icon">📚</a>
+                </div>
+                <div class="stat-value"><?php echo "Tugas: " . $total_tugas;?></div>
             <div class="stat-item">
                 <div class="stat-icon">
                     <a href="nilai.html" class="stat-icon">📋</a>
@@ -289,7 +305,7 @@
                 <div class="stat-label">Rekap Nilai</div>
             </div>
             <div class="view-more-container">
-                <a href="manajemen-tugas.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                <a href="manajemen-tugas.php" class="btn btn-primary">Lihat Selengkapnya</a>
             </div>
         </div>
     </div>

@@ -1,3 +1,20 @@
+<?php
+// Panggil koneksi ke database
+include 'koneksi.php';
+
+// Ambil hasilnya
+$query = "SELECT COUNT(*) AS total FROM tugas";
+$result = mysqli_query($conn, $query);
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $total_tugas = $row['total'];
+} else {
+    $total_tugas = 0; // Nilai default jika query gagal
+}
+
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,7 +31,7 @@
 
         body {
             background-color: #f5f5f5;
-        }
+        } 
 
         .header {
             display: flex;
@@ -74,6 +91,10 @@
             right: 20px;
             font-size: 24px;
             cursor: pointer;
+        }
+
+        .menu-group {
+            margin-bottom: 20px;
         }
 
         .menu-item {
@@ -242,6 +263,9 @@
             text-align: center;
             margin: 0 auto;
             }
+            h2{
+                text-align: center;
+            }
         h3 {
              color: rgb(255, 255, 255);
         }
@@ -269,14 +293,14 @@
         <div class="close-sidebar" id="closeSidebar">×</div>
         
         <div class="menu-group">
-            <a href="beranda.html" class="menu-item">Beranda</a>
+            <a href="beranda.php" class="menu-item">Beranda</a>
             <a href="profil.html" class="menu-item">Profil Saya</a>
         </div>
         
         <div class="menu-group">
             <div class="menu-title">Menu Utama</div>
             <a href="presensi.html" class="menu-item">Presensi</a>
-            <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
+            <a href="manajemen-tugas.php" class="menu-item">Management Tugas</a>
             <a href="pengajuan.php" class="menu-item">Pengajuan Magang</a>
         </div>
         
@@ -290,45 +314,66 @@
         <div class="header">
             <h1>Manajemen Tugas</h1>
         </div>
-        
-        <div class="input-section">
-            <select id="bulan">
-                <option value="">Pilih Bulan</option>
-                <option value="01">Januari</option>
-                <option value="02">Februari</option>
-                <option value="03">Maret</option>
-                <option value="04">April</option>
-                <option value="05">Mei</option>
-                <option value="06">Juni</option>
-                <option value="07">Juli</option>
-                <option value="08">Agustus</option>
-                <option value="09">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-            </select>
-            
-            <select id="tahun">
-                <option value="">Pilih Tahun</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-                <option value="2029">2029</option>
-            </select>
-        </div>
-        
-        <div class="input-section">
-            <input type="text" id="tugas" placeholder="Masukkan tugas baru">
-            <button onclick="tambahTugas()">Tambah Tugas</button>
-        </div>
-        
-        <div class="task-list" id="daftarTugas">
-            <!-- Tugas akan ditambahkan di sini secara dinamis -->
-        </div>
-    </div>
 
-
+        <form method="POST" action="proses_tambah.php">
+            <div class="input-section">
+                <select name="bulan" id="bulan" required>
+                    <option value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+        
+                <select name="tahun" id="tahun" required>
+                    <option value="">Pilih Tahun</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+        
+            <div class="input-section">
+                <input type="text" name="tugas" id="tugas" placeholder="Masukkan tugas baru" required>
+                <button type="submit">Tambah Tugas</button>
+            </div>
+        </form>
+        <br>
+        <h2>Daftar Tugas</h2>
+        <br> 
+        <?php
+        // Panggil koneksi ke database
+        include "koneksi.php";
+        
+        // Query untuk mengambil data tugas
+        $sql = "SELECT nama_tugas, bulan, tahun, dibuat_pada FROM tugas ORDER BY dibuat_pada DESC";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='task-item'>";
+                echo "<div class='task-details'>";
+                echo "<span>" . htmlspecialchars($row["nama_tugas"]) . "</span>";
+                echo "<small>Bulan: " . htmlspecialchars($row["bulan"]) . ", Tahun: " . htmlspecialchars($row["tahun"]) . "</small>";
+                echo "<br><small>Dibuat pada: " . htmlspecialchars($row["dibuat_pada"]) . "</small>";
+                echo "</div>";
+                echo "</div>";
+            }
+        } else {
+            echo "Belum ada tugas yang ditambahkan.";
+        }
+        
+        $conn->close();
+        ?>
+        
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');

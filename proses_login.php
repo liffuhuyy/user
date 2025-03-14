@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['nama'] = $row['nama'];
             $_SESSION['email'] = $row['email'];
 
-            echo "<script>alert('Login Berhasil!'); window.location.href='beranda.html';</script>";
+            echo "<script>alert('Login Berhasil!'); window.location.href='beranda.php';</script>";
         } else {
             echo "<script>alert('Password salah!'); window.history.back();</script>";
         }

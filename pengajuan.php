@@ -255,6 +255,10 @@ include 'koneksi.php';
             cursor: pointer;
         }
 
+        .menu-group {
+            margin-bottom: 20px;
+        }
+
         .menu-item {
             padding: 12px 30px;
             display: block;
@@ -444,14 +448,14 @@ tr:hover {
         <div class="close-sidebar" id="closeSidebar">×</div>
         
         <div class="menu-group">
-            <a href="beranda.html" class="menu-item">Beranda</a>
+            <a href="beranda.php" class="menu-item">Beranda</a>
             <a href="profil.html" class="menu-item">Profil Saya</a>
         </div>
         
         <div class="menu-group">
             <div class="menu-title">Menu Utama</div>
             <a href="presensi.html" class="menu-item">Presensi</a>
-            <a href="manajemen-tugas.html" class="menu-item">Management Tugas</a>
+            <a href="manajemen-tugas.php" class="menu-item">Management Tugas</a>
             <a href="pengajuan.php" class="menu-item">Pengajuan Magang</a>
         </div>
         
@@ -471,6 +475,7 @@ tr:hover {
             <th>Jurusan</th>
             <th>Tanggal Masuk</th>
             <th>Tanggal Keluar</th>
+            <th>Perusahaan</th>
         </tr>
         <?php
         $query = "SELECT * FROM siswa_magang ORDER BY tanggal_mulai DESC";
@@ -483,10 +488,11 @@ tr:hover {
                 echo "<td>" . htmlspecialchars($row['jurusan']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['tanggal_mulai']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['tanggal_selesai']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['perusahaan']) . "</td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='4' style='text-align: center;'>Belum ada data</td></tr>";
+            echo "<tr><td colspan='5' style='text-align: center;'>Belum ada data</td></tr>";
         }
         ?>
     </table>

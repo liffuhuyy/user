@@ -332,94 +332,128 @@
 
     </style>
 </head>
-<body>
-    <div class="header">
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <h3>SMKN 1 SUBANG</h3>
-
-            <div class="profile-icon">
-                <a href="profil.html">
-                    <img src="profil.html" alt="Profile Picture">
-                </a>
-            </div>            
-    </div>
-
-    <div class="overlay" id="overlay"></div>
-
-    <div class="sidebar" id="sidebar">
-        <div class="close-sidebar" id="closeSidebar">×</div>
-        
-        <div class="menu-group">
-            <a href="beranda.php" class="menu-item">Beranda</a>
-            <a href="profil.html" class="menu-item">Profil Saya</a>
-        </div>
-        
-        <div class="menu-group">
-            <div class="menu-title">Menu Utama</div>
-            <a href="presensi.html" class="menu-item">Presensi</a>
-            <a href="manajemen-tugas.php" class="menu-item">Management Tugas</a>
-            <a href="pengajuan.php" class="menu-item">Pengajuan Magang</a>
-        </div>
-        
-        <div class="menu-group">
-            <div class="menu-title">Lainnya</div>
-            <a href="kontak.html" class="menu-item">Kontak</a>
-            <a href="index.html" class="menu-item">Logout</a>
-        </div>
-    </div>
-
-    <div class="container">
-
+    <body>
         <div class="header">
-            <h1>Presensi</h1>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h3>SMKN 1 SUBANG</h3>
+
+                <div class="profile-icon">
+                    <a href="profil.html">
+                        <img src="profil.html" alt="Profile Picture">
+                    </a>
+                </div>            
         </div>
 
-        <div class="date-time">
-            <div id="current-date"></div>
-            <div id="current-time"></div>
+        <div class="overlay" id="overlay"></div>
+
+        <div class="sidebar" id="sidebar">
+            <div class="close-sidebar" id="closeSidebar">×</div>
+            
+            <div class="menu-group">
+                <a href="beranda.php" class="menu-item">Beranda</a>
+                <a href="profil.html" class="menu-item">Profil Saya</a>
+            </div>
+            
+            <div class="menu-group">
+                <div class="menu-title">Menu Utama</div>
+                <a href="presensi.html" class="menu-item">Presensi</a>
+                <a href="manajemen-tugas.php" class="menu-item">Management Tugas</a>
+                <a href="pengajuan.php" class="menu-item">Pengajuan Magang</a>
+            </div>
+            
+            <div class="menu-group">
+                <div class="menu-title">Lainnya</div>
+                <a href="kontak.html" class="menu-item">Kontak</a>
+                <a href="index.html" class="menu-item">Logout</a>
+            </div>
         </div>
-        <div class="content">
-            <div class="time-info">
-                <div class="time-block">
-                    <h3>Jam Masuk</h3>
-                    <p>09:00</p>
+
+        <div class="container">
+
+            <div class="header">
+                <h1>Presensi</h1>
+            </div>
+
+            <div class="date-time">
+                <div id="current-date"></div>
+                <div id="current-time"></div>
+            </div>
+            <div class="content">
+                <div class="time-info">
+                    <div class="time-block">
+                        <h3>Jam Masuk</h3>
+                        <p>09:00</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Jam Keluar</h3>
+                        <p>17:00</p>
+                    </div>
                 </div>
-                <div class="time-block">
-                    <h3>Jam Keluar</h3>
-                    <p>17:00</p>
+                
+                <button id="check-in-btn" class="action-btn" disabled>Absen Masuk</button>
+                <button id="check-out-btn" class="action-btn" disabled>Absen Pulang</button>
+                
+                <div id="status-message" class="status hide"></div>
+                
+                <div style="margin-top: 30px;">
+                    <a href="izinsakit.php" class="action-btn secondary-btn" style="text-decoration: none; text-align: center;">Sakit & Izin</a>
+                    <a href="riwayat-absen.php" class="action-btn secondary-btn" style="text-decoration: none; text-align: center;">Riwayat Absensi</a>
                 </div>
             </div>
-            
-            <button id="check-in-btn" class="action-btn" disabled>Absen Masuk</button>
-            <button id="check-out-btn" class="action-btn" disabled>Absen Pulang</button>
-            
-            <div id="status-message" class="status hide"></div>
-            
-            <div style="margin-top: 30px;">
-                <a href="izinsakit.html" class="action-btn secondary-btn" style="text-decoration: none; text-align: center;">Sakit & Izin</a>
-                <a href="riwayat-absen.html" class="action-btn secondary-btn" style="text-decoration: none; text-align: center;">Riwayat Absensi</a>
+        </div>
+        
+        <!-- Early Leave Modal -->
+        <div id="early-leave-modal" class="modal">
+            <div class="modal-content">
+                <h3>Konfirmasi Pulang Lebih Awal</h3>
+                <form method="POST" action="pulang_awal.php">
+                    <p>Anda akan pulang sebelum jam 17:00. Mohon berikan alasan:</p>
+                    <textarea id="early-leave-reason" name="alasan" placeholder="Tuliskan alasan pulang lebih awal..." required></textarea>
+
+                <div class="modal-buttons">
+                    <button class="modal-btn cancel-btn" onclick="closeEarlyLeaveModal()">Batal</button>
+                    <button class="modal-btn confirm-btn" onclick="confirmEarlyLeave()">Konfirmasi</button>
+                </form>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Early Leave Modal -->
-    <div id="early-leave-modal" class="modal">
-        <div class="modal-content">
-            <h3>Konfirmasi Pulang Lebih Awal</h3>
-            <p>Anda akan pulang sebelum jam 17:00. Mohon berikan alasan:</p>
-            <textarea id="early-leave-reason" placeholder="Tuliskan alasan pulang lebih awal..."></textarea>
-            <div class="modal-buttons">
-                <button class="modal-btn cancel-btn" onclick="closeEarlyLeaveModal()">Batal</button>
-                <button class="modal-btn confirm-btn" onclick="confirmEarlyLeave()">Konfirmasi</button>
-            </div>
-        </div>
-    </div>
 
     <script>
+            function closeEarlyLeaveModal() {
+        document.getElementById('early-leave-modal').style.display = 'none';
+    }
+
+    function confirmEarlyLeave() {
+        const reason = document.getElementById('early-leave-reason').value;
+        const jamKeluar = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }); // Get current time
+
+        if (!reason) {
+            alert("Alasan harus diisi!");
+            return;
+        }
+
+        // Send the data to the server using Fetch API
+        fetch('pulang_awal.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `jam_keluar=${encodeURIComponent(jamKeluar)}&alasan=${encodeURIComponent(reason)}`,
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Notify the user
+            closeEarlyLeaveModal(); // Close modal
+            location.reload(); // Reload page to update data
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
         // Function to update date and time
         function updateDateTime() {
             const now = new Date();
@@ -666,6 +700,34 @@
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
         });
+        document.getElementById('check-in-btn').addEventListener('click', function () {
+    const namaSiswa = ''; // Ganti sesuai login user
+    const currentDate = new Date().toISOString().split('T')[0]; // Tanggal hari ini
+    const jamMasuk = new Date().toLocaleTimeString('it-IT'); // Jam masuk
+
+    fetch('simpan_presensi.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `nama_siswa=${encodeURIComponent(namaSiswa)}&tanggal=${currentDate}&jam_masuk=${jamMasuk}&status=Hadir`
+    }).then(response => response.text())
+      .then(result => alert(result));
+});
+
+document.getElementById('check-out-btn').addEventListener('click', function () {
+    const namaSiswa = 'John Doe'; // Ganti sesuai login user
+    const jamKeluar = new Date().toLocaleTimeString('it-IT'); // Jam keluar
+
+    fetch('simpan_keluar.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `nama_siswa=${encodeURIComponent(namaSiswa)}&jam_keluar=${jamKeluar}`
+    }).then(response => response.text())
+      .then(result => alert(result));
+});
     </script>
 </body>
 </html>

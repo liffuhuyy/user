@@ -161,7 +161,7 @@ $conn->close();
         }
 
         .btn:hover {
-            transform: translateY(-2px);
+            background-color: #172a46;
         }
 
         .btn-primary {

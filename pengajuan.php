@@ -408,7 +408,7 @@ tr:hover {
         }
 
         .tombol:hover {
-            background-color:rgb(0, 19, 39);
+            background-color: #172a46;
         }
 
 @media (max-width: 768px) {

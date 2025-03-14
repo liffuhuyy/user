@@ -204,7 +204,7 @@ $conn->close();
         }
 
         button:hover {
-            background-color:  #1a252f;
+            background-color: #172a46;
         }
 
         .task-list {
